@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket = "rj-terraform-bucket"
-    key    = "dev-state/"
+    key    = "state/"
     region = "us-east-1"
   }
 }
@@ -12,7 +12,7 @@ provider "aws" {
 
 
 resource "aws_s3_bucket" "s3Bucket" {
-     bucket = "dev-rj-assets-bucket"
+     bucket = "rj-assets-bucket"
 }
 
 resource "aws_s3_bucket_acl" "s3Bucket" {
@@ -21,7 +21,7 @@ resource "aws_s3_bucket_acl" "s3Bucket" {
 }
 
 resource "aws_s3_bucket_website_configuration" "s3Bucket" {
-    bucket = "dev-rj-assets-bucket"
+    bucket = "rj-assets-bucket"
     index_document {
         suffix = "index.html"
     } 
