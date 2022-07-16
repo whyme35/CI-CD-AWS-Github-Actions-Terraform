@@ -25,6 +25,10 @@ resource "aws_s3_bucket_acl" "s3Bucket" {
       }
       permission = "READ"
       }
+      
+      owner {
+        id = data.aws_canonical_user_id.current.id
+      }
 }
 }
 resource "aws_s3_bucket_website_configuration" "s3Bucket" {
