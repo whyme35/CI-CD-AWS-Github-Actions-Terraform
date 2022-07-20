@@ -19,7 +19,7 @@ jobs:
 
 
     - name: Terraform init
-      working-directory: ./terraform
+      working-directory: ./terraform/environment/prod
       id: Init
       run: terraform init 
       env:
@@ -29,27 +29,15 @@ jobs:
 
 
     - name: Terraform Validate
-      working-directory: ./terraform    
+      working-directory: ./terraform/environment/prod
       id: Validate
       run: terraform validate -no-color
 
     - name: Terraform Apply
-      working-directory: ./terraform
+      working-directory: ./terraform/environment/prod
       id: Apply
       run: terraform apply -auto-approve
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}  
-
-
-    - name: Sync S3
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read
-      env:
-        SOURCE_DIR: './assets'
-        AWS_REGION: 'us-east-1'
-        AWS_S3_BUCKET: 'rj-assets-bucket'
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
