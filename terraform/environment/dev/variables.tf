@@ -5,3 +5,7 @@ variable "region" {
 variable "webpage_assets_bucket" {
   description = "The bucket used to store Webpage assets"
 }
+
+variable "env" {
+  description = "Terraform deployment environment"
+}
