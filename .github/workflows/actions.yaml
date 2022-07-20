@@ -19,7 +19,7 @@ jobs:
 
 
     - name: Terraform init
-      working-directory: ./terraform
+      working-directory: ./terraform/environment/prod
       id: Init
       run: terraform init 
       env:
@@ -29,12 +29,12 @@ jobs:
 
 
     - name: Terraform Validate
-      working-directory: ./terraform    
+      working-directory: ./terraform/environment/prod
       id: Validate
       run: terraform validate -no-color
 
     - name: Terraform Apply
-      working-directory: ./terraform
+      working-directory: ./terraform/environment/prod
       id: Apply
       run: terraform apply -auto-approve
       env:

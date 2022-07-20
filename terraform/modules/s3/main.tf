@@ -18,10 +18,10 @@ depends_on = [
   aws_s3_bucket.s3Bucket
 ]
 bucket = var.webpage_assets_bucket
-for_each = fileset("${path.root}/../assets/", "*")
+for_each = fileset("../../../assets/", "*")
 key = "${each.value}"
-source = "../assets/${each.value}"
-source_hash = filemd5("${path.root}/../assets/${each.value}")
+source = "../../../assets/${each.value}"
+source_hash = filemd5("../../../assets/${each.value}")
 content_type = "text/html"
 acl = "public-read"
 }
